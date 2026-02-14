@@ -1,11 +1,26 @@
 <Solution>
-  <Project Path="Controllers/Controllers.csproj" Id="e2590c72-19a5-4df5-a2bd-9758b203a1d8" />
-  <Project Path="DataBase/DataBase.sqlproj" Id="6edcb1f0-59f8-4bb8-b94b-2085f3db04c7">
-    <Build />
-    <Deploy />
-  </Project>
-  <Project Path="Domain/Domain.csproj" />
-  <Project Path="EntityFramework/EntityFramework.csproj" Id="59feb373-6043-4850-aef8-9bb6d6c5da9c" />
-  <Project Path="Infrastructure/Infrastructure.csproj" Id="9fd3220e-1247-49ea-a266-f4a508c2b7fd" />
-  <Project Path="UseCases/UseCases.csproj" Id="d347f526-6d15-405a-a16c-e7aa44e87f19" />
+  <Folder Name="/Api/">
+    <Project Path="Controllers/Controllers.csproj" Id="e2590c72-19a5-4df5-a2bd-9758b203a1d8" />
+  </Folder>
+  <Folder Name="/Application/">
+    <Project Path="Mappers/Mappers.csproj" Id="251266a3-6015-47ef-9ea3-5199ab351ba5" />
+    <Project Path="UseCases/UseCases.csproj" Id="d347f526-6d15-405a-a16c-e7aa44e87f19" />
+  </Folder>
+  <Folder Name="/DataBase/">
+    <Project Path="DataBase/TrackingMyself.sqlproj" Id="6edcb1f0-59f8-4bb8-b94b-2085f3db04c7">
+      <Build />
+      <Deploy />
+    </Project>
+  </Folder>
+  <Folder Name="/Domain/">
+    <Project Path="Domain/Entity.csproj" />
+    <Project Path="Services/Services.csproj" Id="9b513768-5404-414c-9466-ece27ef49608" />
+  </Folder>
+  <Folder Name="/Infrastructure/">
+    <Project Path="EntityFramework/EntityFramework.csproj" Id="59feb373-6043-4850-aef8-9bb6d6c5da9c" />
+    <Project Path="Infrastructure/Repository.csproj" Id="9fd3220e-1247-49ea-a266-f4a508c2b7fd" />
+  </Folder>
+  <Folder Name="/Shared/">
+    <Project Path="Dto/Dto.csproj" Id="9908a8d5-1470-43d0-b296-71940dd027d1" />
+  </Folder>
 </Solution>
