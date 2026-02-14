@@ -2,6 +2,7 @@
 .vs/
 *.user
 *.suo
+*.dbmdl
 
 # Ignorar binarios y compilados
 bin/
