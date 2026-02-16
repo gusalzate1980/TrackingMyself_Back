@@ -24,6 +24,7 @@
     <Project Path="Dto/Dto.csproj" Id="9908a8d5-1470-43d0-b296-71940dd027d1" />
   </Folder>
   <Folder Name="/UnitTest/">
+    <Project Path="ApplicationTests/ApplicationTest.csproj" Id="9e3c58f2-1e50-47eb-a867-d636bc169c4f" />
     <Project Path="DomainServicesTest/DomainServicesTest.csproj" Id="86b8f933-3239-4618-a2dd-f61118559c08" />
   </Folder>
 </Solution>
