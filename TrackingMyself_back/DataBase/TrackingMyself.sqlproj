@@ -72,4 +72,7 @@
   <ItemGroup>
     <None Include="TrackingMyself.publish.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="TrackingMyself.refactorlog" />
+  </ItemGroup>
 </Project>

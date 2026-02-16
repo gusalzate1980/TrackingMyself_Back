@@ -11,37 +11,69 @@ Post-Deployment Script Template
 */
 
 /*ExpenseType*/
-INSERT [dbo].[ExpenseType] ([Id], [Description]) VALUES (1, N'Mesada Tuluá')
-INSERT [dbo].[ExpenseType] ([Id], [Description]) VALUES (2, N'Mercado')
-INSERT [dbo].[ExpenseType] ([Id], [Description]) VALUES (3, N'Arriendo')
-INSERT [dbo].[ExpenseType] ([Id], [Description]) VALUES (4, N'Celular Gustavo')
-INSERT [dbo].[ExpenseType] ([Id], [Description]) VALUES (5, N'Disney')
-INSERT [dbo].[ExpenseType] ([Id], [Description]) VALUES (6, N'Youtube')
-INSERT [dbo].[ExpenseType] ([Id], [Description]) VALUES (7, N'Chat Gpt')
-INSERT [dbo].[ExpenseType] ([Id], [Description]) VALUES (8, N'Clases Tenis')
-INSERT [dbo].[ExpenseType] ([Id], [Description]) VALUES (9, N'Torneos Tenis')
-INSERT [dbo].[ExpenseType] ([Id], [Description]) VALUES (10, N'Peluqueria')
-INSERT [dbo].[ExpenseType] ([Id], [Description]) VALUES (11, N'Gustos')
-INSERT [dbo].[ExpenseType] ([Id], [Description]) VALUES (12, N'Prepagada')
-INSERT [dbo].[ExpenseType] ([Id], [Description]) VALUES (13, N'Refuerzo Math')
-INSERT [dbo].[ExpenseType] ([Id], [Description]) VALUES (14, N'Clases Bajo')
-INSERT [dbo].[ExpenseType] ([Id], [Description]) VALUES (15, N'Energia')
-INSERT [dbo].[ExpenseType] ([Id], [Description]) VALUES (16, N'Gas')
-INSERT [dbo].[ExpenseType] ([Id], [Description]) VALUES (17, N'Agua')
-INSERT [dbo].[ExpenseType] ([Id], [Description]) VALUES (18, N'Internet')
-INSERT [dbo].[ExpenseType] ([Id], [Description]) VALUES (19, N'Gasolina')
-INSERT [dbo].[ExpenseType] ([Id], [Description]) VALUES (20, N'Onces Santiago')
-INSERT [dbo].[ExpenseType] ([Id], [Description]) VALUES (21, N'Ahorro Carro')
-INSERT [dbo].[ExpenseType] ([Id], [Description]) VALUES (22, N'Ahorro Vacaciones')
+MERGE dbo.ExpenseType AS TARGET
+USING (VALUES
+    (1,  N'Mesada Tuluá'),
+    (2,  N'Mercado'),
+    (3,  N'Arriendo'),
+    (4,  N'Celular Gustavo'),
+    (5,  N'Disney'),
+    (6,  N'Youtube'),
+    (7,  N'Chat Gpt'),
+    (8,  N'Clases Tenis'),
+    (9,  N'Torneos Tenis'),
+    (10, N'Peluqueria'),
+    (11, N'Gustos'),
+    (12, N'Prepagada'),
+    (13, N'Refuerzo Math'),
+    (14, N'Clases Bajo'),
+    (15, N'Energia'),
+    (16, N'Gas'),
+    (17, N'Agua'),
+    (18, N'Internet'),
+    (19, N'Gasolina'),
+    (20, N'Onces Santiago'),
+    (21, N'Ahorro Carro'),
+    (22, N'Ahorro Vacaciones')
+) AS SOURCE (Id, Description)
+
+ON TARGET.Id = SOURCE.Id
+
+WHEN NOT MATCHED THEN
+    INSERT (Id, Description)
+    VALUES (SOURCE.Id, SOURCE.Description)
+
+WHEN MATCHED AND TARGET.Description <> SOURCE.Description THEN
+    UPDATE SET TARGET.Description = SOURCE.Description;
 
 /*Time*/
-INSERT [dbo].[Time] ([Id], [Year], [Month]) VALUES (1, 2026, 3)
-INSERT [dbo].[Time] ([Id], [Year], [Month]) VALUES (2, 2026, 4)
-INSERT [dbo].[Time] ([Id], [Year], [Month]) VALUES (3, 2026, 5)
-INSERT [dbo].[Time] ([Id], [Year], [Month]) VALUES (4, 2026, 6)
-INSERT [dbo].[Time] ([Id], [Year], [Month]) VALUES (5, 2026, 7)
-INSERT [dbo].[Time] ([Id], [Year], [Month]) VALUES (6, 2026, 8)
-INSERT [dbo].[Time] ([Id], [Year], [Month]) VALUES (8, 2026, 9)
-INSERT [dbo].[Time] ([Id], [Year], [Month]) VALUES (9, 2026, 10)
-INSERT [dbo].[Time] ([Id], [Year], [Month]) VALUES (10, 2026, 11)
-INSERT [dbo].[Time] ([Id], [Year], [Month]) VALUES (11, 2026, 12)
+MERGE dbo.[Time] AS TARGET
+USING (VALUES
+    (1,  2026, 3, 3),
+    (2,  2026, 4, 3),
+    (3,  2026, 5, 3),
+    (4,  2026, 6, 3),
+    (5,  2026, 7, 3),
+    (6,  2026, 8, 3),
+    (8,  2026, 9, 3),
+    (9,  2026, 10, 3),
+    (10, 2026, 11, 3),
+    (11, 2026, 12, 3)
+) AS SOURCE (Id, [Year], [Month], TimeTense)
+
+ON TARGET.Id = SOURCE.Id
+
+WHEN NOT MATCHED THEN
+    INSERT (Id, [Year], [Month], TimeTense)
+    VALUES (SOURCE.Id, SOURCE.[Year], SOURCE.[Month], SOURCE.TimeTense)
+
+WHEN MATCHED AND (
+       TARGET.[Year] <> SOURCE.[Year]
+    OR TARGET.[Month] <> SOURCE.[Month]
+    OR TARGET.TimeTense <> SOURCE.TimeTense
+) THEN
+    UPDATE SET 
+        TARGET.[Year] = SOURCE.[Year],
+        TARGET.[Month] = SOURCE.[Month],
+        TARGET.TimeTense = SOURCE.TimeTense;
+
