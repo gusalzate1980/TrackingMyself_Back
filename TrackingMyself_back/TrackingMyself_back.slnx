@@ -3,7 +3,7 @@
     <Project Path="Controllers/Controllers.csproj" Id="e2590c72-19a5-4df5-a2bd-9758b203a1d8" />
   </Folder>
   <Folder Name="/Application/">
-    <Project Path="Mappers/Mappers.csproj" Id="251266a3-6015-47ef-9ea3-5199ab351ba5" />
+    <Project Path="Mappers/MappersDtoDomain.csproj" Id="251266a3-6015-47ef-9ea3-5199ab351ba5" />
     <Project Path="UseCases/UseCases.csproj" Id="d347f526-6d15-405a-a16c-e7aa44e87f19" />
   </Folder>
   <Folder Name="/DataBase/">
