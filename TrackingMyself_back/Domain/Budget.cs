@@ -6,7 +6,6 @@ namespace TrackingMyself.Domain.Entities
     {
         public int Id { get; set; }
 
-        public int IdTime { get; set; }
 
         public int Income { get; set; }
 
@@ -14,7 +13,8 @@ namespace TrackingMyself.Domain.Entities
 
         public string? Decription { get; set; }
 
-        // Relación con la entidad Time (si existe la tabla referenciada por la FK)
-        public virtual Time? Time { get; set; }
+        public virtual Time Time { get; set; }
+
+        public bool IsValid { set; get; }
     }
 }
