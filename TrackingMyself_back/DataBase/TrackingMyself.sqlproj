@@ -62,4 +62,14 @@
   <ItemGroup>
     <PostDeploy Include="Scripts\Script.PostDeployment.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <Build Include="Tables\Budget.sql" />
+    <Build Include="Tables\BudgetExecution.sql" />
+    <Build Include="Tables\ExpenseType.sql" />
+    <Build Include="Tables\ExpenseDetail.sql" />
+    <Build Include="Tables\Time.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="TrackingMyself.publish.xml" />
+  </ItemGroup>
 </Project>
