@@ -86,6 +86,7 @@ public partial class TrackingMyselfDbContext : DbContext
             entity.ToTable("Time");
 
             entity.Property(e => e.Id).ValueGeneratedNever();
+            entity.Property(e => e.TimeTense).HasDefaultValue(1);
         });
 
         OnModelCreatingPartial(modelBuilder);

@@ -8,6 +8,7 @@ namespace Entity
     {
         PAST = 1,
         PRESENT = 2,
-        FUTURE = 3
+        FUTURE = 3,
+        NOT_DEFINED = 4
     }
 }

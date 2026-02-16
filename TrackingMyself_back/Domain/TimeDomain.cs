@@ -2,7 +2,7 @@
 
 namespace TrackingMyself.Domain.Entities
 {
-    public class Time
+    public class TimeDomain
     {
         public int Id { get; set; }
 
@@ -12,7 +12,7 @@ namespace TrackingMyself.Domain.Entities
 
         public TimeTenseEnum TimeTense { get; set; }
 
-        public virtual ICollection<Budget> Budgets { get; set; } = new List<Budget>();
+        public virtual ICollection<BudgetDomain> Budgets { get; set; } = new List<BudgetDomain>();
 
         public string TimeTenseDescription
         {

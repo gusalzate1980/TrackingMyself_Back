@@ -6,17 +6,27 @@ namespace Application.Mappers
 {
     public static class FromDtoToDomain
     {
-        public static Budget ToDomain(this CreateBudgetDto dto)
+        public static BudgetDomain ToDomain(this CreateBudgetDto dto)
         {
-            return new Budget()
+            TimeTenseEnum timeTenseEnum = TimeTenseEnum.NOT_DEFINED;
+
+            try
+            {
+                timeTenseEnum = Enum.Parse<TimeTenseEnum>(dto.TimeTense);
+            }
+            catch(Exception e)
+            {
+                
+            }
+            return new BudgetDomain()
             {
                 Income = dto.Income,
-                Decription = dto.Description,
-                Time = new Time()
+                Description = dto.Description,
+                Time = new TimeDomain()
                 {
                     Year = dto.Year,
                     Month = dto.Month,
-                    TimeTense = Enum.Parse<TimeTenseEnum>(dto.TimeTense)
+                    TimeTense = timeTenseEnum
                 }
             };
         }

@@ -3,9 +3,10 @@ using TrackingMyself.Domain.Entities;
 
 namespace Services
 {
-    public class BudgetService : EntityServiceBase
+    public class BudgetDomainService : EntityServiceBase
     {
-        public Budget CreateBudget(Budget budget, List<Budget> currentAndfutureBudgets)
+       
+        public BudgetDomain CreateBudget(BudgetDomain budget, List<BudgetDomain> currentAndfutureBudgets)
         {
             List<string> errors = new List<string>();
 
@@ -38,7 +39,7 @@ namespace Services
                 AddError(new DomainError()
                 {
                     ErrorDetail = errors,
-                    ObjectName = nameof(BudgetService),
+                    ObjectName = nameof(BudgetDomainService),
                     MethodName = nameof(CreateBudget)   
                 });
                 budget.IsValid = false;
@@ -55,13 +56,13 @@ namespace Services
             return timeTense.Equals(TimeTenseEnum.PAST);
         }
 
-        private bool ThereIsBudgetInSameCurrentTimeTense(List<Budget> currentAndfutureBudgets, Time budgetTime)
+        private bool ThereIsBudgetInSameCurrentTimeTense(List<BudgetDomain> currentAndfutureBudgets, TimeDomain budgetTime)
         {
             return currentAndfutureBudgets.Any(b => b.Time.TimeTense.Equals(TimeTenseEnum.PRESENT) 
                                                     && b.Time.Month == budgetTime.Month && b.Time.Year == budgetTime.Year);
         }
 
-        private bool ThereIsBudgetInSameFutureTimeTense(List<Budget> currentAndfutureBudgets, Time budgetTime)
+        private bool ThereIsBudgetInSameFutureTimeTense(List<BudgetDomain> currentAndfutureBudgets, TimeDomain budgetTime)
         {
             return currentAndfutureBudgets.Any(b => b.Time.TimeTense.Equals(TimeTenseEnum.FUTURE) && b.Time.TimeTense.Equals(TimeTenseEnum.FUTURE)
                                                      && b.Time.Month == budgetTime.Month && b.Time.Year == budgetTime.Year);

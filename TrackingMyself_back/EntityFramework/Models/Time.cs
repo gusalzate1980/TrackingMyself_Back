@@ -11,5 +11,7 @@ public partial class Time
 
     public int Month { get; set; }
 
+    public int TimeTense { get; set; }
+
     public virtual ICollection<Budget> Budgets { get; set; } = new List<Budget>();
 }

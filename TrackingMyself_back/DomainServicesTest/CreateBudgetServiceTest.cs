@@ -7,18 +7,18 @@ namespace DomainServicesTest
     [TestClass]
     public sealed class BudgetServiceTests
     {
-        private BudgetService _budgetServiceCanCreate;
+        private BudgetDomainService _budgetServiceCanCreate;
         
-        private BudgetService _budgetServicePastNotAllowed;
+        private BudgetDomainService _budgetServicePastNotAllowed;
         
-        private BudgetService _budgetServiceFutureDuplicated;
+        private BudgetDomainService _budgetServiceFutureDuplicated;
         
         [TestInitialize]
         public void Setup()
         {
-            _budgetServiceCanCreate = new BudgetService();
-            _budgetServicePastNotAllowed = new BudgetService();
-            _budgetServiceFutureDuplicated = new BudgetService();
+            _budgetServiceCanCreate = new BudgetDomainService();
+            _budgetServicePastNotAllowed = new BudgetDomainService();
+            _budgetServiceFutureDuplicated = new BudgetDomainService();
         }
 
 
@@ -26,12 +26,12 @@ namespace DomainServicesTest
         public void CrearBudget_CanCreate()
         {
             //ARRANGE
-            var time = new Time { Id = 1, Year = 2026, Month = 4, TimeTense = TimeTenseEnum.FUTURE };
-            Budget budget = new Budget() 
+            var time = new TimeDomain { Id = 1, Year = 2026, Month = 4, TimeTense = TimeTenseEnum.FUTURE };
+            BudgetDomain budget = new BudgetDomain() 
             {
                 Time = time,
                 Income = 1000,
-                Decription = "Can Create"
+                Description = "Can Create"
             };
             
             //ACT
@@ -45,12 +45,12 @@ namespace DomainServicesTest
         public void CrearBudget_PastNotAllowed()
         {
             //ARRANGE
-            var time = new Time { Id = 1, Year = 2025, Month = 12, TimeTense = TimeTenseEnum.PAST };
-            Budget budget = new Budget()
+            var time = new TimeDomain { Id = 1, Year = 2025, Month = 12, TimeTense = TimeTenseEnum.PAST };
+            BudgetDomain budget = new BudgetDomain()
             {
                 Time = time,
                 Income = 1000,
-                Decription = "Past Not Allowed"
+                Description = "Past Not Allowed"
             };
             
             //ACT
@@ -64,12 +64,12 @@ namespace DomainServicesTest
         public void CrearBudget_FutureDuplicated()
         {
             //ARRANGE
-            var time = new Time { Id = 3, Year = 2026, Month = 3, TimeTense = TimeTenseEnum.FUTURE };
-            Budget budget = new Budget()
+            var time = new TimeDomain { Id = 3, Year = 2026, Month = 3, TimeTense = TimeTenseEnum.FUTURE };
+            BudgetDomain budget = new BudgetDomain()
             {
                 Time = time,
                 Income = 1250,
-                Decription = "Future Duplicated"
+                Description = "Future Duplicated"
             };
             
             //ACT
@@ -79,17 +79,17 @@ namespace DomainServicesTest
             Assert.AreEqual("There is already a budget in the same future period.", _budgetServiceFutureDuplicated.Errors[0].ErrorDetail[0]);
         }
 
-        private List<Budget> SetCurrentAndFutureBudgets()
+        private List<BudgetDomain> SetCurrentAndFutureBudgets()
         {
-            var time1 = new Time { Id = 1, Year = 2025, Month = 12, TimeTense = Entity.TimeTenseEnum.PAST };
-            var time2 = new Time { Id = 2, Year = 2026, Month = 2, TimeTense = Entity.TimeTenseEnum.PRESENT };
-            var time3 = new Time { Id = 3, Year = 2026, Month = 3, TimeTense = Entity.TimeTenseEnum.FUTURE };
+            var time1 = new TimeDomain { Id = 1, Year = 2025, Month = 12, TimeTense = Entity.TimeTenseEnum.PAST };
+            var time2 = new TimeDomain { Id = 2, Year = 2026, Month = 2, TimeTense = Entity.TimeTenseEnum.PRESENT };
+            var time3 = new TimeDomain { Id = 3, Year = 2026, Month = 3, TimeTense = Entity.TimeTenseEnum.FUTURE };
 
-            return new List<Budget>()
+            return new List<BudgetDomain>()
             {
-                new Budget { Id = 1, Time = time1, Income = 1000, Available = 0 },
-                new Budget { Id = 2, Time = time2, Income = 1500, Available = 0 },
-                new Budget { Id = 3, Time = time3, Income = 2000, Available = 2000 }
+                new BudgetDomain { Id = 1, Time = time1, Income = 1000, Available = 0 },
+                new BudgetDomain { Id = 2, Time = time2, Income = 1500, Available = 0 },
+                new BudgetDomain { Id = 3, Time = time3, Income = 2000, Available = 2000 }
             };
         }
 

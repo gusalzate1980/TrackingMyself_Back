@@ -2,7 +2,7 @@
 
 namespace TrackingMyself.Domain.Entities
 {
-    public class Budget
+    public class BudgetDomain
     {
         public int Id { get; set; }
 
@@ -11,9 +11,9 @@ namespace TrackingMyself.Domain.Entities
 
         public int Available { get; set; }
 
-        public string? Decription { get; set; }
+        public string Description { get; set; }
 
-        public virtual Time Time { get; set; }
+        public virtual TimeDomain Time { get; set; }
 
         public bool IsValid { set; get; }
     }
