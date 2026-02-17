@@ -1,5 +1,6 @@
 using EntityFramework.Data;
 using Microsoft.EntityFrameworkCore;
+using Repository.BudgetRepository;
 using Repository.Time;
 using UseCases;
 
@@ -20,6 +21,7 @@ builder.Services.AddSingleton<ISingletonDomainAppService, SingletonDomainAppServ
 
 #region infrastructure services
 builder.Services.AddScoped<ITimeRepository, TimeRepository>();
+builder.Services.AddScoped<IBudgetRepository, BudgetRepository>();
 #endregion 
 
 builder.Logging.ClearProviders();

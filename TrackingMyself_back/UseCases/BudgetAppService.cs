@@ -4,13 +4,14 @@ using Dto.Budget;
 using Repository.BudgetRepository;
 using Services;
 using TrackingMyself.Domain.Entities;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace UseCases
 {
     public class BudgetAppService: IBudgetAppService
     {
         public BudgetDomain Budget { get; set; }
-        private TimeDomain _timeDomain;
+        private TimeDomain? _timeDomain;
 
         private readonly ISingletonDomainAppService _singleton;
         private readonly IBudgetRepository _budgetRepository;
@@ -36,6 +37,7 @@ namespace UseCases
 
                 if (result.IsValid)
                 {
+                    _budgetRepository.AddBudget(Budget);
                     response.ExecutionOk = true;
                     return response;
                 }
@@ -67,7 +69,8 @@ namespace UseCases
                     new ApiErrorDto()
                     {
                         Error = "The specified time domain does not exist.",
-                        ErrorType = ApiErrorEnum.APPLICATION
+                        ErrorType = ApiErrorEnum.APPLICATION,
+                        Where = $"{nameof(BudgetAppService)}.{nameof(CreateBudget)}"
                     }
                 };
 
@@ -78,7 +81,7 @@ namespace UseCases
         #region private methods
         private bool GivenTimeExistis(TimeDomain timeDomain)
         {
-            _timeDomain = _singleton.TimeDomainList().First(t =>   t.Year      ==  timeDomain.Year
+            _timeDomain = _singleton.TimeDomainList().FirstOrDefault(t =>   t.Year      ==  timeDomain.Year
                                                                    && t.Month  ==  timeDomain.Month);
             
             if (_timeDomain != null)

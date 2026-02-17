@@ -1,4 +1,5 @@
-﻿using ApplicationMappers;
+﻿using Application.Mappers;
+using ApplicationMappers;
 using Entity;
 using EntityFramework.Data;
 using EntityFramework.Models;
@@ -10,7 +11,11 @@ namespace Repository.BudgetRepository
     {
         public void AddBudget(BudgetDomain budget)
         {
-            throw new NotImplementedException();
+            Budget record = budget.ToInfrastructure();
+            
+            TrackingMyselfDbContext context = new TrackingMyselfDbContext();
+            context.Budgets.Add(record);
+            context.SaveChanges();
         }
 
         public List<BudgetDomain> GetCurrentAndFutureBudgets()
