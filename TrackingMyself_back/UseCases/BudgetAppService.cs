@@ -30,6 +30,8 @@ namespace UseCases
 
             if(GivenTimeExistis(Budget.Time))
             {
+                Budget.Time.Id = _timeDomain.Id;
+
                 var budgetDomainService = new BudgetDomainService();
                 List<BudgetDomain> currentAndFutureBdgets = _budgetRepository.GetCurrentAndFutureBudgets();
 
