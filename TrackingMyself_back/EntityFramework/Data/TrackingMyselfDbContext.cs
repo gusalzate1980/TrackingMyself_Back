@@ -36,7 +36,7 @@ public partial class TrackingMyselfDbContext : DbContext
         {
             entity.ToTable("Budget");
 
-            entity.Property(e => e.Decription)
+            entity.Property(e => e.Description)
                 .HasMaxLength(50)
                 .IsUnicode(false);
 

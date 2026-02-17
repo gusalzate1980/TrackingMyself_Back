@@ -12,7 +12,7 @@ namespace Application.Mappers
             return new Budget()
             {
                 Income = budget.Income,
-                Decription = budget.Description,
+                Description = budget.Description,
                 IdTime = budget.Time.Id,
                 Available = budget.Available
             };

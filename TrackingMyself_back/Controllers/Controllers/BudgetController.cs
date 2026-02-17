@@ -1,4 +1,5 @@
-﻿using Dto.Budget;
+﻿using Dto.Api;
+using Dto.Budget;
 using Microsoft.AspNetCore.Mvc;
 using UseCases;
 
@@ -20,12 +21,14 @@ namespace Controllers.Controllers
 
 
         [HttpPost]
-        public IActionResult CreateBudget([FromBody] CreateBudgetDto dto)
+        public IActionResult CreateBudget([FromBody] ApiRequestDto<CreateBudgetDto> request)
         {
-            var x = _singletonDomainAppService.TimeDomainList();
-            _budgetAppService.CreateBudget(dto);
+            var response = _budgetAppService.CreateBudget(request.RequestValue);
             
-            return Ok();
+            if (response.ExecutionOk)
+                return Ok(response);
+
+            return BadRequest(response);
         }
 
     }

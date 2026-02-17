@@ -13,7 +13,7 @@ public partial class Budget
 
     public int Available { get; set; }
 
-    public string? Decription { get; set; }
+    public string Description { get; set; } = null!;
 
     public virtual ICollection<BudgetExecution> BudgetExecutions { get; set; } = new List<BudgetExecution>();
 
