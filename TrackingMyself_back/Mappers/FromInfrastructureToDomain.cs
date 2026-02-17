@@ -1,8 +1,5 @@
 ﻿using Entity;
 using EntityFramework.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using TrackingMyself.Domain.Entities;
 
 namespace ApplicationMappers

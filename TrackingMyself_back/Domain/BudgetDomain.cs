@@ -1,6 +1,4 @@
-﻿using System.Timers;
-
-namespace TrackingMyself.Domain.Entities
+﻿namespace TrackingMyself.Domain.Entities
 {
     public class BudgetDomain
     {

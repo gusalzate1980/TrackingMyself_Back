@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Dto.Api
+﻿namespace Dto.Api
 {
     public class ApiRequestDto<T> where T : class
     {
