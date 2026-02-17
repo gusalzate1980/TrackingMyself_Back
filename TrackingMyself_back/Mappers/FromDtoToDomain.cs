@@ -8,16 +8,12 @@ namespace Application.Mappers
     {
         public static BudgetDomain ToDomain(this CreateBudgetDto dto)
         {
-            TimeTenseEnum timeTenseEnum = TimeTenseEnum.NOT_DEFINED;
+            TimeTenseEnum timeTenseEnum;
+            if (!Enum.TryParse(dto.TimeTense, out timeTenseEnum))
+            {
+                timeTenseEnum = TimeTenseEnum.NOT_DEFINED;
+            }
 
-            try
-            {
-                timeTenseEnum = Enum.Parse<TimeTenseEnum>(dto.TimeTense);
-            }
-            catch(Exception e)
-            {
-                
-            }
             return new BudgetDomain()
             {
                 Income = dto.Income,
